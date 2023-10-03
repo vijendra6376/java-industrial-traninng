@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] words = {"apple", "banana", "cherry", "date", "grape"};
+        String wordToGuess = words[(int) (Math.random() * words.length)];
+        char[] guessedWord = new char[wordToGuess.length()];
+        boolean[] guessedLetters = new boolean[26];
+        int attempts = 6;
+
+        while (attempts > 0) {
+            System.out.println("Word to guess: " + String.valueOf(guessedWord));
+            System.out.println("Attempts left: " + attempts);
+            System.out.print("Guess a letter: ");
+            char guess = scanner.next().charAt(0);
+
+            if (guessedLetters[guess - 'a']) {
+                System.out.println("You already guessed that letter.");
+                continue;
+            }
+
+            guessedLetters[guess - 'a'] = true;
+
+            boolean found = false;
+            for (int i = 0; i < wordToGuess.length(); i++) {
+                if (wordToGuess.charAt(i) == guess) {
+                    guessedWord[i] = guess;
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                attempts--;
+                System.out.println("Incorrect guess.");
+            }
+
+            if (String.valueOf(guessedWord).equals(wordToGuess)) {
+                System.out.println("Congratulations! You guessed the word: " + wordToGuess);
+                break;
+            }
+        }
+
+        if (attempts == 0) {
+            System.out.println("You ran out of attempts. The word was: " + wordToGuess);
+        }
+
+        scanner.close();
+        }
+}
+import java.util.Scanner;
+import java.util.*;
+public class Main {
+
+        static int sum =0;
+
+            public static void main(String[] args) {
+                Random obj = new Random();
+                int num = obj.nextInt(25);
+
+                for(int i=0;i<5;i++)
+                {
+                    Scanner sc = new Scanner(System.in);
+                    System.out.println("Enter a number less than 26");
+                    int guess = sc.nextInt();
+
+                            if(num == guess)
+                            {
+                                System.out.println("You Won !!");
+                                break;
+                            } else if (num < guess) {
+                                System.out.println("You entered a bigger number");
+
+                            }
+                            else if(num > guess)
+                            {
+                                System.out.println("You entered a smaller number");
+                            }
+
+                }
+
+                System.out.println(num);
+            }
+}
